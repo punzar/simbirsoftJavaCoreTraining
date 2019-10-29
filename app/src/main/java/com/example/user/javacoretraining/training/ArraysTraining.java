@@ -1,5 +1,8 @@
 package com.example.user.javacoretraining.training;
 
+import java.util.Collection;
+import java.util.HashMap;
+
 /**
  * Набор тренингов по работе с массивами в java.
  * <p>
@@ -19,7 +22,17 @@ public class ArraysTraining {
      * @return отсортированный массив
      */
     public int[] sort(int[] valuesArray) {
-        //TODO: implement it
+        int memNum;
+        for (int i = 1; i < valuesArray.length; i++) {
+            for (int digit = 0; digit < valuesArray.length - i; digit++) {
+                if (valuesArray[digit] > valuesArray[digit + 1]) {
+                    memNum = valuesArray[digit];
+                    valuesArray[digit] = valuesArray[digit + 1];
+                    valuesArray[digit + 1] = memNum;
+                }
+            }
+        }
+
         return valuesArray;
     }
 
@@ -32,8 +45,14 @@ public class ArraysTraining {
      * @return максимальное число или 0
      */
     public int maxValue(int... values) {
+        int maxValue = 0;
+        for (int num : values) {
+            if(maxValue < num){
+                maxValue = num;
+            }
+        }
         //TODO: implement it
-        return 0;
+        return maxValue;
     }
 
     /**
@@ -44,8 +63,11 @@ public class ArraysTraining {
      * @return входящий массив в обратном порядке
      */
     public int[] reverse(int[] array) {
-        //TODO: implement it
-        return new int[]{};
+        int[] reverseArray = new int[array.length];
+        for(int num = 0; num < array.length; num ++ ){
+            reverseArray[num] = array [(array.length - 1) - num];
+        }
+        return reverseArray;
     }
 
     /**
@@ -59,8 +81,21 @@ public class ArraysTraining {
      * @return массив из чисел Фибоначчи
      */
     public int[] fibonacciNumbers(int numbersCount) {
-        //TODO: implement it
-        return new int[]{};
+        if (numbersCount < 1) {
+            return new int[]{};
+        }
+        int[] sequenceFibonacci = new int[numbersCount];
+        int memNum1 = 1;
+        int memNum2 = 0;
+        for(int i = 0; i < numbersCount; i ++){
+
+            sequenceFibonacci[i] =memNum1 + memNum2;
+            memNum2 = memNum1;
+            memNum1 = sequenceFibonacci[i];
+
+        }
+        return sequenceFibonacci;
+
     }
 
     /**
@@ -72,7 +107,26 @@ public class ArraysTraining {
      * элементов
      */
     public int maxCountSymbol(int[] array) {
-        //TODO: implement it
-        return 0;
+
+        HashMap<Integer,Integer> countOfSymbols = new HashMap<>();
+
+        for(int i = 0; i < array.length; i++){
+            if(countOfSymbols.containsKey(array[i])){
+                countOfSymbols.put(array[i], countOfSymbols.get(array[i]) + 1);
+            }
+
+            if(!countOfSymbols.containsKey(array[i])) {
+                countOfSymbols.put(array[i],1);
+            }
+        }
+        Collection<Integer> counts = countOfSymbols.values();
+        Integer maxValue = 0;
+        for (Integer num : counts) {
+            if(maxValue < num){
+                maxValue = num;
+            }
+        }
+
+        return maxValue.intValue();
     }
 }
