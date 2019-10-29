@@ -47,11 +47,11 @@ public class ArraysTraining {
     public int maxValue(int... values) {
         int maxValue = 0;
         for (int num : values) {
-            if(maxValue < num){
+            if (maxValue < num) {
                 maxValue = num;
             }
         }
-        //TODO: implement it
+
         return maxValue;
     }
 
@@ -64,8 +64,8 @@ public class ArraysTraining {
      */
     public int[] reverse(int[] array) {
         int[] reverseArray = new int[array.length];
-        for(int num = 0; num < array.length; num ++ ){
-            reverseArray[num] = array [(array.length - 1) - num];
+        for (int num = 0; num < array.length; num++) {
+            reverseArray[num] = array[(array.length - 1) - num];
         }
         return reverseArray;
     }
@@ -87,9 +87,9 @@ public class ArraysTraining {
         int[] sequenceFibonacci = new int[numbersCount];
         int memNum1 = 1;
         int memNum2 = 0;
-        for(int i = 0; i < numbersCount; i ++){
+        for (int i = 0; i < numbersCount; i++) {
 
-            sequenceFibonacci[i] =memNum1 + memNum2;
+            sequenceFibonacci[i] = memNum1 + memNum2;
             memNum2 = memNum1;
             memNum1 = sequenceFibonacci[i];
 
@@ -108,21 +108,21 @@ public class ArraysTraining {
      */
     public int maxCountSymbol(int[] array) {
 
-        HashMap<Integer,Integer> countOfSymbols = new HashMap<>();
+        HashMap<Integer, Integer> countOfSymbols = new HashMap<>();
 
-        for(int i = 0; i < array.length; i++){
-            if(countOfSymbols.containsKey(array[i])){
+        for (int i = 0; i < array.length; i++) {
+            if (countOfSymbols.containsKey(array[i])) {
                 countOfSymbols.put(array[i], countOfSymbols.get(array[i]) + 1);
             }
 
-            if(!countOfSymbols.containsKey(array[i])) {
-                countOfSymbols.put(array[i],1);
+            if (!countOfSymbols.containsKey(array[i])) {
+                countOfSymbols.put(array[i], 1);
             }
         }
         Collection<Integer> counts = countOfSymbols.values();
         Integer maxValue = 0;
         for (Integer num : counts) {
-            if(maxValue < num){
+            if (maxValue < num) {
                 maxValue = num;
             }
         }
