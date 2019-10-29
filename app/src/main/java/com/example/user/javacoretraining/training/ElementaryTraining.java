@@ -11,6 +11,7 @@ package com.example.user.javacoretraining.training;
  */
 public class ElementaryTraining {
 
+
     /**
      * Метод должен возвращать среднее значение
      * для введенных параметров
@@ -20,8 +21,8 @@ public class ElementaryTraining {
      * @return среднее значение для введенных чисел
      */
     public double averageValue(int firstValue, int secondValue) {
-        //TODO: implement it
-        return 0;
+        double average = (double) (firstValue + secondValue) / 2;
+        return average;
     }
 
     /**
@@ -34,8 +35,8 @@ public class ElementaryTraining {
      * @return сумма новых трех чисел
      */
     public double complicatedAmount(int firstValue, int secondValue, int thirdValue) {
-        //TODO: implement it
-        return 0;
+        double complicate = (double) firstValue * 2 + (secondValue - 3) + thirdValue * thirdValue;
+        return complicate;
     }
 
     /**
@@ -47,7 +48,11 @@ public class ElementaryTraining {
      * @return новое значение
      */
     public int changeValue(int value) {
-        //TODO: implement it
+        if (value > 3) {
+            value += 10;
+        } else {
+            value -= 10;
+        }
         return value;
     }
 
@@ -62,8 +67,18 @@ public class ElementaryTraining {
      * @return новое число
      */
     public int swapNumbers(int value) {
-        //TODO: implement it
-        return 0;
+        if (value > 9 && value <= 99999) {
+            int endNum = value % 10;
+            int countOfSymbol = String.valueOf(value).length();
+            // Делитель для отсечения первого символа
+            int bigDiv = (int) Math.pow(10, countOfSymbol - 1);
+            int startNum = ((value - value % (bigDiv)) / (bigDiv));
+            int halfResultNum = value - endNum + startNum;
+            int resultNum = ((halfResultNum - bigDiv * startNum) + bigDiv * endNum);
+            return resultNum;
+        }
+        if (value < 10) return value;
+        return -1;
     }
 
     /**
@@ -77,7 +92,25 @@ public class ElementaryTraining {
      * @return новое число
      */
     public int zeroEvenNumber(int value) {
-        //TODO: implement it
-        return 0;
+        if (value > 9 && value <= 99999) {
+            String valueText = String.valueOf(value);
+            char[] chars = valueText.toCharArray();
+
+            int[] digitsArray = new int[chars.length];
+            for (int digit = 0; digit < chars.length; digit++) {
+                if (Character.getNumericValue(chars[digit]) % 2 == 0) {
+                    digitsArray[digit] = 0;
+                } else digitsArray[digit] = Character.getNumericValue(chars[digit]);
+            }
+            int result = 0;
+            int exponent = digitsArray.length - 1;
+            for (int digit = 0; digit < digitsArray.length; digit++) {
+                result += digitsArray[digit] * Math.pow(10, exponent);
+                exponent -= 1;
+            }
+            return result;
+        }
+        if (value < 10) return value;
+        return -1;
     }
 }

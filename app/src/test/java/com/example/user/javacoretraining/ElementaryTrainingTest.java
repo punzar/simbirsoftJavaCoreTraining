@@ -16,6 +16,7 @@ public class ElementaryTrainingTest {
         elementaryTraining = new ElementaryTraining();
     }
 
+
     @Test
     public void averageValue_realValues() {
         double averageValue = elementaryTraining.averageValue(10, 20);
